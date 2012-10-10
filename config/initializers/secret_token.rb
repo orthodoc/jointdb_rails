@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Jointdb::Application.config.secret_token = '8e26096ea14a986cd4b53b0f12264ee443a4e927d608f2dafbe7a2076836b623ab29e5bb61acfba5f979709d56d83d54e7e5bdb70c9ed58f12c0f866d7d0b9b3'
+Jointdb::Application.config.secret_token = 'f1f9149f9abd1839a01522fd207d6a4a8903b01761ca429a286cbb17697924500f3dc25775d2227b5a1cb3c91d934b6a464330899ebdbf04577d191e0d7939d5'
