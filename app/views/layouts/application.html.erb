@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Jointdb" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "AYOSI Registry" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Jointdb" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
@@ -26,9 +26,14 @@
               <%= yield %>
             </div>
           </div>
-          <footer>
-          </footer>
         </div>
+        <footer class="footer">
+            <div class="row">
+              <div class="span12">
+                <%= render 'layouts/footer' %>
+              </div>
+            </div>
+        </footer>
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
   </body>
