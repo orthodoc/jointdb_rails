@@ -25,6 +25,21 @@ class CompaniesController < ApplicationController
     @companies = Company.all
   end
 
+  def edit
+    @company = Company.find(params[:id])
+  end
+
+  def update
+    @company = Company.find(params[:id])
+    if @company.update_attributes(params[:company])
+      flash[:notice] = "Company has been updated."
+      redirect_to @company
+    else
+      flash[:alert] = "Company has not been updated"
+      render :action => "edit"
+    end
+  end
+
   private
     def find_categories
       @categories = Category.all
