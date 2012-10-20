@@ -1,6 +1,7 @@
 class CompaniesController < ApplicationController
   before_filter :find_categories
   before_filter :find_company, :only => [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, :only => :destroy
 
   def new
     @company = Company.new
@@ -26,7 +27,12 @@ class CompaniesController < ApplicationController
   end
 
   def edit
-    @company = Company.find(params[:id])
+    if user_signed_in?
+      @company = Company.find(params[:id])
+    else
+      flash[:alert] = "You have to log in to update the company"
+      redirect_to new_user_session_path 
+    end
   end
 
   def update
@@ -38,6 +44,13 @@ class CompaniesController < ApplicationController
       flash[:alert] = "Company has not been updated"
       render :action => "edit"
     end
+  end
+
+  def destroy
+    @company = Company.find(params[:id])
+    @company.destroy
+    flash[:notice] = "Company has been deleted"
+    redirect_to companies_path
   end
 
   private

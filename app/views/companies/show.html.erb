@@ -1,5 +1,11 @@
 <h2><%= @company.name %></h2>
 <p>Category: <%= @company.category.name %></p>
 <br />
-<%= link_to "Edit Company", edit_company_path(@company) %> | 
-<%= link_to "Delete Company", @company, :method => :delete, :confirm => "Are you sure you want to delete this company?" %>
+<% if user_signed_in? %>
+    <%= link_to "Edit Company", edit_company_path(@company) %> | 
+  <% if current_user.has_role? :admin %>
+    <%= link_to "Delete Company", @company, :method => :delete, :confirm => "Are you sure you want to delete this company?" %>
+  <% else %>
+    <%= link_to "Home", root_path %>
+  <% end %>
+<% end %>

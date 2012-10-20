@@ -1,12 +1,16 @@
 require 'spec_helper'
 
 describe CompaniesController do
-  before do
+
+  before (:each) do
     @company = FactoryGirl.create(:company)
     @companies = Company.all
+    @user = FactoryGirl.create(:user)
+  end
+
 
     context "for a user" do
-      before do
+      before (:each) do
         get :index
       end
 
@@ -17,7 +21,7 @@ describe CompaniesController do
     end
 
     context "for a user" do
-      before do
+      before (:each) do
         get :show, id: @company.id
       end
 
@@ -25,10 +29,11 @@ describe CompaniesController do
       it { should assign_to(:company).with(@company) }
       it { should render_template(:show) }
       it { should_not set_the_flash }
+      it { should_not have_content("Edit Company") }
     end
 
     context "for a user" do
-      before do
+      before (:each) do
         get :show, :id => "not-here"
       end
 
@@ -36,6 +41,15 @@ describe CompaniesController do
       it { should set_the_flash[:alert].to("The company you were looking for could not be found")}
     end
 
-  end
+    context "for a user" do
+      before do
+        sign_out @user
+        get :edit, :id => @company.id
+      end
+
+      it { should redirect_to(new_user_session_path) }
+      it { should set_the_flash[:alert].to("You have to log in to update the company") }
+
+    end
 
 end
