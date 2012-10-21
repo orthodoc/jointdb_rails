@@ -22,6 +22,11 @@ def create_user
   @user = FactoryGirl.create(:user, email: @visitor[:email])
 end
 
+def create_admin
+  create_user
+  @user.add_role :admin
+end
+
 def delete_user
   @user ||= User.first conditions: {:email => @visitor[:email]}
   @user.destroy unless @user.nil?

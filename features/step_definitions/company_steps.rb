@@ -30,6 +30,10 @@ Given /^I follow the edit link for the company$/ do
   click_link 'Edit Company'
 end
 
+Given /^I exist as an admin$/ do
+  create_admin
+end
+
 ### WHEN ###
 
 When /^I add a new company that belongs to a category$/ do
@@ -47,7 +51,7 @@ When /^I make the changes in the company form$/ do
 end
 
 When /^I follow the delete link$/ do
-  create_user
+  create_admin
   sign_in
   click_link @company.name
   click_link "Delete Company"
@@ -86,4 +90,20 @@ end
 
 Then /^I should see the edit link for the company$/ do
   page.has_content?("Edit Company")
+end
+
+Then /^I should not see the delete link for the company$/ do
+  page.should_not have_content("Delete Company")
+end
+
+Then /^I should see the delete link for the company$/ do
+  page.has_content?("Delete Company")
+end
+
+Then /^I should see a successful delete message$/ do
+  page.should have_content("Company has been deleted")
+end
+
+Then /^I should not see the deleted company$/ do
+  page.should_not have_content(@company.name)
 end
