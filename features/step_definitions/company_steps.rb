@@ -8,9 +8,6 @@ def create_company
   @company = FactoryGirl.create(:company)
 end
 
-def build_category 
-  @category = FactoryGirl.build(:category, name: "Manufacturer")
-end
 
 ### GIVEN ###
 
@@ -65,7 +62,7 @@ Then /^I should see the company name$/ do
   page.has_content?(@company.name)
 end
 
-Then /^I should see the category name$/ do
+Then /^I should see the category name the company belongs to$/ do
   page.has_content?(@company.category.name)
 end
 

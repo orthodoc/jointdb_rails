@@ -10,5 +10,5 @@ Feature: Create a company
     When I add a new company that belongs to a category
     Then I should see the page for the newly created company
     And I should see the company name
-    And I should see the category name
+    And I should see the category name the company belongs to
     And I should see a successful flash notice

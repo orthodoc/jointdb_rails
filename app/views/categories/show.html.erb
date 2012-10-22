@@ -1,0 +1,5 @@
+<h2><%= @category.name %></h2>
+<br />
+<%= link_to "Edit Category", edit_category_path(@category) %> |
+<%= link_to "Delete Category", @category, :method => :delete, :confirm => "Are you sure you want to delete this category and its companies?" %> |
+<%= link_to "Home", root_path %>
