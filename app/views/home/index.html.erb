@@ -1,8 +1,3 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
-<%= link_to 'New Company', new_company_path %>
 <h2>Companies</h2>
 <ul>
   <% @companies.each do |company| %>

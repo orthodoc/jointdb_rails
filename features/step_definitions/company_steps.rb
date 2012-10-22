@@ -30,9 +30,6 @@ Given /^I follow the edit link for the company$/ do
   click_link 'Edit Company'
 end
 
-Given /^I exist as an admin$/ do
-  create_admin
-end
 
 ### WHEN ###
 

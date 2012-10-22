@@ -73,6 +73,15 @@ Given /^I exist as an unconfirmed user$/ do
   create_unconfirmed_user
 end
 
+Given /^I exist as an admin$/ do
+  create_admin
+end
+
+Given /^I am logged in as an admin$/ do
+  create_admin
+  sign_in
+end
+
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
   create_visitor
@@ -190,7 +199,10 @@ Then /^I should see an account edited message$/ do
   page.should have_content "You updated your account successfully."
 end
 
+Then /^I should not see my name$/ do
+  page.should_not have_content @user[:name]
+end
+
 Then /^I should see my name$/ do
-  create_user
   page.should have_content @user[:name]
 end

@@ -1,10 +1,16 @@
 Feature: Show Users
-  As a visitor to the website
-  I want to see registered users listed on the homepage
-  so I can know if the site has users
+  As and admin 
+  I want to see the list of registered users
 
-    Scenario: Viewing users
-      Given I exist as a user
-      And I am logged in
-      When I look at the list of users
-      Then I should see my name
+  Background:
+    When I look at the list of users
+
+  Scenario: Viewing users as a user
+    Given I exist as a user
+    And I am logged in
+    Then I should not see my name
+
+  Scenario: Viewing users as an admin
+    Given I exist as an admin 
+    And I am logged in as an admin
+    Then I should see my name
