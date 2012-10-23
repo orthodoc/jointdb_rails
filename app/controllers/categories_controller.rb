@@ -1,7 +1,13 @@
 class CategoriesController < ApplicationController
+  before_filter :find_category, :only => [:show, :edit, :update, :destroy]
 
   def new
-    @category = Category.new
+    if admin?
+      @category = Category.new
+    else
+      admin_alert
+      redirect_to root_path
+    end
   end
 
   def create
@@ -22,4 +28,46 @@ class CategoriesController < ApplicationController
   def edit
     @category = Category.find(params[:id])
   end
+
+  def index
+    if admin?
+      @categories = Category.all
+    else
+      admin_alert
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update_attributes(params[:category])
+      flash[:notice] = "Category has been updated"
+      redirect_to @category
+    else
+      flash[:alert] = "Category has not been updated"
+      render :action => "edit"
+    end
+  end
+
+  private
+    
+    def admin?
+      user_signed_in? and current_user.has_role? :admin
+    end
+
+    def admin_alert
+      flash[:alert] = "You have to log in as admin to perform this action"
+    end
+
+    def find_category
+      if admin?
+        @category = Category.find(params[:id])
+      else
+        admin_alert
+        redirect_to root_path
+      end
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "The category you were looking for does not exist"
+      redirect_to categories_path
+    end
 end
