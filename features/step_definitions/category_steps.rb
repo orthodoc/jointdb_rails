@@ -32,6 +32,7 @@ When /^I visit new category page$/ do
 end
 
 When /^I follow the category$/ do
+  create_category
   visit '/categories'
   click_link @category[:name]
 end
@@ -77,4 +78,24 @@ end
 
 Then /^I should see the updated page for the category$/ do
   visit category_path(@category)
+end
+
+Then /^I follow the delete link for the category$/ do
+  create_admin
+  sign_in
+  visit '/categories'
+  click_link @category[:name]
+  click_link "Delete Category"
+end
+
+Then /^I should see the delete link for the category$/ do
+  page.should have_content("Delete Category")
+end
+
+Then /^I should see a successful category delete message$/ do
+  page.should have_content("Category has been deleted")
+end
+
+Then /^I should not see the deleted category$/ do
+  page.should_not have_content @category[:name]
 end
