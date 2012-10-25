@@ -8,6 +8,10 @@ def build_category
   @category = FactoryGirl.build(:category, name: "Manufacturer")
 end
 
+def create_category_with_companies
+  @category = FactoryGirl.create(:category_with_companies)
+end
+
 ### GIVEN ###
 
 Given /^there is a category listed$/ do
@@ -39,6 +43,11 @@ end
 
 When /^I visit the categories page$/ do
   step %{I am on the categories page}
+end
+
+When /^I visit the category page$/ do
+  create_category_with_companies
+  visit category_path(@category)
 end
 
 ### THEN ###
@@ -98,4 +107,10 @@ end
 
 Then /^I should not see the deleted category$/ do
   page.should_not have_content @category[:name]
+end
+
+Then /^I should see the companies belonging to that category$/ do
+  @company = @category.companies.first
+  page.should have_content @category.name
+  page.should have_content @company.name
 end
