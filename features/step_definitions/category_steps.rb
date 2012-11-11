@@ -65,7 +65,7 @@ Then /^I should not see the new category link$/ do
 end
 
 Then /^I should see an admin flash message$/ do
-  page.should have_content("You have to log in as admin to perform this action")
+  page.has_content?("You have to log in as admin to perform this action")
 end
 
 Then /^I should be on the homepage$/ do

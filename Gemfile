@@ -9,7 +9,7 @@ gem "rolify", ">= 3.2.0"
 gem "simple_form", ">= 2.0.3"
 gem "mechanize"
 gem "foreigner"
-gem "will_paginate"
+gem "will_paginate", '~>3.0'
 gem "pg_search"
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

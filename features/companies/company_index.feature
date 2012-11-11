@@ -16,4 +16,4 @@ Feature: Company list
   Scenario: Searching for non-existent company
     When I search for a non-existent company
     Then I should not see the non-existent company
-    #And I should see an unsuccesful search message
+    And I should see an unsuccesful search message

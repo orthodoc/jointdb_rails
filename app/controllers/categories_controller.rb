@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  include UsersHelper
   before_filter :find_category, :only => [:show, :edit, :update, :destroy]
 
   def new
@@ -58,14 +59,6 @@ class CategoriesController < ApplicationController
 
   private
     
-    def admin?
-      user_signed_in? and current_user.has_role? :admin
-    end
-
-    def admin_alert
-      flash[:alert] = "You have to log in as admin to perform this action"
-    end
-
     def find_category
       if admin?
         @category = Category.find(params[:id])

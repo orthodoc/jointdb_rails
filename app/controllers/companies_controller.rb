@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  include CompaniesHelper
+  include UsersHelper
   before_filter :find_categories
   before_filter :find_company, :only => [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :only => :destroy
@@ -23,7 +25,7 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.text_search(params[:query])
+    @companies = Company.text_search(params[:query]).page(params[:page]).per_page(20)
   end
 
   def edit
@@ -61,7 +63,7 @@ class CompaniesController < ApplicationController
     def find_company
       @company = Company.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "The company you were looking for could not be found!"
+      company_not_found_alert
       redirect_to companies_path
     end
 end

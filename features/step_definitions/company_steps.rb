@@ -137,3 +137,7 @@ end
 Then /^I should not see the non\-existent company$/ do
   page.should_not have_content('cideapothro') 
 end
+
+Then /^I should see an unsuccesful search message$/ do
+  page.should have_content("The company you were looking for could not be found")
+end

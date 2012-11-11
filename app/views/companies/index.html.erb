@@ -5,9 +5,22 @@
     <%= submit_tag "Search", name: nil %>
   </p>
 <% end %>
+<p>
+  <% if @companies.count == 0 %>
+    <% company_not_found_alert %>
+  <% elsif @companies.count == 1 %>
+    One entry found!!
+  <% else %>
+    <%= @companies.count %> entries found!
+  <% end %>
+</p>
 <ul>
   <% @companies.each do |company| %>
     <li><%= link_to company.name, company %></li>
   <% end %>
 </ul>
+<%= will_paginate @companies %>
 <%= link_to "New Company", new_company_path %>
+<% if admin? %>
+   | <%= link_to "New Category", new_category_path %>
+<% end %>
