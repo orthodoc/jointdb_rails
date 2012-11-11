@@ -38,7 +38,7 @@ describe CompaniesController do
       end
 
       it { should redirect_to(companies_path) }
-      it { should set_the_flash[:alert].to("The company you were looking for could not be found")}
+      it { should set_the_flash[:alert].to("The company you were looking for could not be found!")}
     end
 
     context "for a user" do

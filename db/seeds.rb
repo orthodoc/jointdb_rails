@@ -13,17 +13,11 @@ puts 'New user created: ' << user2.name
 user.add_role :admin
 
 puts 'SETTING UP DEFAULT CATEGORIES'
-category1 = Category.create(:name => 'Manufacturer1')
+category1 = Category.create(:name => 'Manufacturer')
 puts 'New category created: ' << category1.name
-category2 = Category.create(:name => 'Manufacturer2')
+category2 = Category.create(:name => 'Organization')
 puts 'New category created: ' << category2.name
-
-puts 'SETTING UP DEFAULT COMPANIES'
-company1 = Company.create(:name => 'Smart Ortho1', :category_id => 1)
-puts 'New company created: ' << company1.name
-company2 = Company.create(:name => 'Smart Ortho2', :category_id => 1)
-puts 'New company created: ' << company2.name
-company3 = Company.create(:name => 'Smart Ortho3', :category_id => 2)
-puts 'New company created: ' << company3.name
-company4 = Company.create(:name => 'Smart Ortho4', :category_id => 2)
-puts 'New company created: ' << company4.name
+category3 = Category.create(:name => 'Distributor')
+puts 'New category created: ' << category3.name
+category4 = Category.create(:name => 'Other')
+puts 'New category created: ' << category4.name

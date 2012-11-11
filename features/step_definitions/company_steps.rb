@@ -8,6 +8,11 @@ def create_company
   @company = FactoryGirl.create(:company)
 end
 
+def create_non_existent_company
+  @company = FactoryGirl.create(:company, :name => "cideapothro")
+  @company.destroy
+end
+
 
 ### GIVEN ###
 
@@ -27,6 +32,9 @@ Given /^I follow the edit link for the company$/ do
   click_link 'Edit Company'
 end
 
+Given /^I am on the companies page$/ do
+  visit '/companies'
+end
 
 ### WHEN ###
 
@@ -49,6 +57,19 @@ When /^I follow the delete link$/ do
   sign_in
   click_link @company.name
   click_link "Delete Company"
+end
+
+When /^I search for a partial word$/ do
+  visit '/companies'
+  fill_in 'query', :with => 'orth'
+  click_button 'Search'
+end
+
+When /^I search for a non\-existent company$/ do
+  create_non_existent_company
+  visit '/companies'
+  fill_in 'query', :with => 'cideapothro'
+  click_button 'Search'
 end
 
 ### THEN ###
@@ -100,4 +121,19 @@ end
 
 Then /^I should not see the deleted company$/ do
   page.should_not have_content(@company.name)
+end
+
+Then /^I should see the list of companies$/ do
+  create_company
+  @companies = Company.all
+  page.has_content?(@companies.first.name)
+  page.has_content?(@companies.last.name)
+end
+
+Then /^I should the list of companies matching that partial word$/ do
+  page.has_content?('orth')
+end
+
+Then /^I should not see the non\-existent company$/ do
+  page.should_not have_content('cideapothro') 
 end

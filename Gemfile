@@ -10,6 +10,7 @@ gem "simple_form", ">= 2.0.3"
 gem "mechanize"
 gem "foreigner"
 gem "will_paginate"
+gem "pg_search"
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

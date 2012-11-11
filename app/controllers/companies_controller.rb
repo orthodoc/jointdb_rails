@@ -23,7 +23,7 @@ class CompaniesController < ApplicationController
   end
 
   def index
-    @companies = Company.all
+    @companies = Company.text_search(params[:query])
   end
 
   def edit
@@ -61,7 +61,7 @@ class CompaniesController < ApplicationController
     def find_company
       @company = Company.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "The company you were looking for could not be found"
+      flash[:alert] = "The company you were looking for could not be found!"
       redirect_to companies_path
     end
 end
