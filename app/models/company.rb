@@ -12,7 +12,7 @@ class Company < ActiveRecord::Base
     if query.present?
       search(query)
     else
-     order("created_at DESC") 
+      scoped
     end
   end
 end
