@@ -125,9 +125,9 @@ end
 
 Then /^I should see the list of companies$/ do
   create_company
-  @companies = Company.all
-  page.has_content?(@companies.first.name)
-  page.has_content?(@companies.last.name)
+  Company.all.each do |c|
+    page.has_content?(c.name)
+  end
 end
 
 Then /^I should the list of companies matching that partial word$/ do

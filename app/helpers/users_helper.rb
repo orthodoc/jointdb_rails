@@ -6,4 +6,9 @@ module UsersHelper
   def admin_alert
     flash[:alert] = "You have to log in as admin to perform this action"
   end
+
+  def not_admin_action
+    redirect_to root_path
+    admin_alert
+  end
 end

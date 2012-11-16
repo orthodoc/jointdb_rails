@@ -14,9 +14,11 @@ describe CompaniesController do
         get :index
       end
 
+      #it { should route(:get, companies_path).to(:action => :index) }
       it { should respond_with(:success) }
       it { should render_template(:index) }
       it { should_not set_the_flash }
+      it { should assign_to(:companies).with([@company]) }
 
     end
 
