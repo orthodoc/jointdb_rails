@@ -24,6 +24,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @companies = @category.companies.text_search(params[:query]).page(params[:page]).per_page(20)
   end
 
   def edit
