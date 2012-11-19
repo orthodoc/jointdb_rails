@@ -130,7 +130,7 @@ Then /^I should see the list of companies$/ do
   end
 end
 
-Then /^I should the list of companies matching that partial word$/ do
+Then /^I should see the list of companies matching that partial word$/ do
   page.has_content?('orth')
 end
 

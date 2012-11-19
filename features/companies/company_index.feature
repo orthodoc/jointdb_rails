@@ -11,7 +11,7 @@ Feature: Company list
 
   Scenario: Searching for a company
     When I search for a partial word
-    Then I should the list of companies matching that partial word
+    Then I should see the list of companies matching that partial word
 
   Scenario: Searching for non-existent company
     When I search for a non-existent company
