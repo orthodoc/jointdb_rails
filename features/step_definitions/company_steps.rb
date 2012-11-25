@@ -52,7 +52,7 @@ When /^I make the changes in the company form$/ do
   click_button 'Submit'
 end
 
-When /^I follow the delete link$/ do
+When /^I follow the delete link for the company$/ do
   create_admin
   sign_in
   click_link @company.name
@@ -115,7 +115,7 @@ Then /^I should see the delete link for the company$/ do
   page.has_content?("Delete Company")
 end
 
-Then /^I should see a successful delete message$/ do
+Then /^I should see a successful delete message for the company$/ do
   page.should have_content("Company has been deleted")
 end
 

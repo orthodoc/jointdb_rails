@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
+  include PagesHelper
   include UsersHelper
+  before_filter :find_page, only: :show
 
   def index
     if admin?
@@ -62,4 +64,11 @@ class PagesController < ApplicationController
     end
   end
 
+  private
+    def find_page
+      @page = Page.find_by_permalink!(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      page_not_found_alert
+      redirect_to pages_path
+    end
 end

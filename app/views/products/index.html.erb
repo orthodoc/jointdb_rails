@@ -1,0 +1,26 @@
+<h2>Products</h2>
+<%= form_tag products_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+<p>
+  <% if @products.count == 0 %>
+    <% product_not_found_alert %>
+  <% elsif @products.count == 1 %>
+    One entry found!!
+  <% else %>
+    <%= @products.count %> entries found!
+  <% end %>
+</p>
+<ul>
+  <% @products.each do |product| %>
+    <li><%= link_to product.name, product %></li>
+  <% end %>
+</ul>
+<%= will_paginate @products%>
+<%= link_to "New Product", new_product_path %>
+<% if admin? %>
+   | <%= link_to "New Company", new_company_path %>
+<% end %>

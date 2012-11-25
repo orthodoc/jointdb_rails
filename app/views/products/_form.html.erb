@@ -1,0 +1,7 @@
+<%= simple_form_for @product do |f| %>
+  <p>
+    <%= f.input :name %>
+    <%= f.association :company, collection: Company.all(order: :name), prompt: "Choose a company" %>
+  </p>
+  <%= f.button :submit, 'Submit' %>
+<% end %>

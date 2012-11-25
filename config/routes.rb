@@ -7,8 +7,9 @@ Jointdb::Application.routes.draw do
   root :to => 'companies#index'
   devise_for :users
   resources :users, :only => [:show, :index]
-  resources :companies
+  resources :companies 
   resources :categories
+  resources :products
   get ':id', to: 'pages#show', as: :page
   put ':id', to: 'pages#update', as: :page
   delete ':id', to: 'pages#destroy', as: :page

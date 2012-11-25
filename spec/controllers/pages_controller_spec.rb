@@ -183,5 +183,14 @@ describe PagesController do
     it { should redirect_to(root_path) }
     it { should set_the_flash[:alert].to("You have to log in as admin to perform this action") }
   end
+    
+  context "for a user" do
+    before (:each) do
+      get :show, id: "not-here"
+    end
+
+    it { should redirect_to(pages_path) }
+    it { should set_the_flash[:alert].to("The page you were looking for could not be found!")}
+  end
 
 end

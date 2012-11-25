@@ -16,6 +16,6 @@ Feature: Deleting companies
   Scenario: Delete a company by admin
     Given I exist as an admin
     Then I should see the delete link for the company
-    And I follow the delete link
-    Then I should see a successful delete message
+    And I follow the delete link for the company
+    Then I should see a successful delete message for the company
     And I should not see the deleted company
