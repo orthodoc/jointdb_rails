@@ -2,6 +2,7 @@ class Company < ActiveRecord::Base
   include PgSearch
   attr_accessible :category_id, :name
   belongs_to :category
+  has_many :products
   validates :name,  :presence => true,
                     :uniqueness => true
   validates :category,  :presence => true

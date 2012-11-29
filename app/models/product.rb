@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   attr_accessible :company_id, :name
   belongs_to :company
   validates :name,  presence: true,
-                    uniqueness: true
+                    uniqueness: {scope: :company_id}
   validates :company, presence: true
 
   pg_search_scope :search, against: :name, using: {tsearch: {prefix: true, dictionary: "english"}}

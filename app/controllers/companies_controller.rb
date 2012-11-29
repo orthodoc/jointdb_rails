@@ -22,6 +22,7 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find(params[:id])
+    @products = @company.products.text_search(params[:query]).page(params[:page]).per_page(20)
   end
 
   def index

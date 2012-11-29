@@ -65,11 +65,23 @@ When /^I search for a partial word$/ do
   click_button 'Search'
 end
 
+When /^I search for a partial product word$/ do
+  create_company
+  visit company_path(@company)
+  fill_in 'query', with: 'fanc'
+  click_button 'Search'
+end
+
 When /^I search for a non\-existent company$/ do
   create_non_existent_company
   visit '/companies'
   fill_in 'query', :with => 'cideapothro'
   click_button 'Search'
+end
+
+When /^I visit the company page$/ do
+  create_company
+  visit company_path(@company)
 end
 
 ### THEN ###
@@ -140,4 +152,17 @@ end
 
 Then /^I should see an unsuccesful search message$/ do
   page.should have_content("The company you were looking for could not be found")
+end
+
+Then /^I should see the list of products belonging to that company$/ do
+  @company = FactoryGirl.create(:company_with_products)
+  @products = @company.products
+  @products.each do |product|
+    page.has_content?(product.name)
+  end
+  page.has_content?(@company.name)
+end
+
+Then /^I should see the list of products matching that partial word$/ do
+  page.has_content?('fanc')
 end

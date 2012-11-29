@@ -91,7 +91,8 @@ Then /^I should see the edit link for the product$/ do
 end
 
 Then /^I am on the company page$/ do
-  visit company_path(@product.company.name)
+  create_product
+  visit company_path(@product.company)
 end
 
 Then /^I should see the updated page for the product$/ do
@@ -138,4 +139,8 @@ end
 
 Then /^I should see an unsuccesful product seach message$/ do
   page.should have_content("The product you were looking for could not be found!")
+end
+
+Then /^I should see an unsuccesful product search message$/ do
+  page.should have_content("The product you were looking for could not be found")
 end
