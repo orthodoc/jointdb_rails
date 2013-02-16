@@ -189,7 +189,7 @@ describe PagesController do
       get :show, id: "not-here"
     end
 
-    it { should redirect_to(pages_path) }
+    it { should redirect_to(root_path) }
     it { should set_the_flash[:alert].to("The page you were looking for could not be found!")}
   end
 

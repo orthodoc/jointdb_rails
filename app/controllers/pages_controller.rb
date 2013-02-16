@@ -69,6 +69,6 @@ class PagesController < ApplicationController
       @page = Page.find_by_permalink!(params[:id])
     rescue ActiveRecord::RecordNotFound
       page_not_found_alert
-      redirect_to pages_path
+      redirect_to root_path
     end
 end

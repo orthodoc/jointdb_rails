@@ -11,6 +11,9 @@ gem "mechanize"
 gem "foreigner"
 gem "will_paginate", '~>3.0'
 gem "pg_search"
+gem "rubyzip"
+gem "smarter_csv"
+gem "charlock_holmes"
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

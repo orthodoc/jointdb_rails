@@ -40,10 +40,10 @@ end
 
 When /^I add a new company that belongs to a category$/ do
   build_company 
-  build_category
+  create_category
   click_on 'New Company'
   fill_in 'Name', :with => @company[:name]
-  select 'Manufacturer', :from => 'Category'
+  select @category[:name], :from => 'Category'
   click_button 'Submit'
 end
 
